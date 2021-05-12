@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 import cors from "cors";
-import indexRouter from "./routes/index.js";
-import userRouter from "./routes/users.js";
+import indexRouter from "./routers/index.js";
 
 // ALLOWING process.env
 dotenv.config();
@@ -42,7 +41,6 @@ app.listen(port, () => {
 // ROUTES
 // #######################################
 app.use("/", indexRouter);
-app.use("/users", userRouter);
 
 // #######################################
 // ERROR HANDLER
@@ -52,10 +50,5 @@ app.use("/users", userRouter);
 }); */
 
 app.use((err, req, res, next) => {
-  res.status(500).send({ message: err.message });
-});
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+  res.status(err.status || 500).send({ message: err.message });
 });

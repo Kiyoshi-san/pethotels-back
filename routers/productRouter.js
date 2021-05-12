@@ -81,7 +81,7 @@ productRouter.get(
       .sort(sortOrder)
       .skip(pageSize * (page - 1))
       .limit(pageSize);
-    res.send({ products, page, pages: Math.cell(count / pageSize) });
+    res.send({ products, page, pages: Math.ceil(count / pageSize) });
   })
 );
 
@@ -114,7 +114,7 @@ productRouter.get(
 productRouter.post(
   "/",
   isAuth,
-  isSeller,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
       name: "sample name" + Date.now(),
@@ -209,3 +209,5 @@ productRouter.post(
     }
   })
 );
+
+export default productRouter;

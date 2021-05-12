@@ -1,9 +1,10 @@
 import express from "express";
 import path from "path";
-import productRouter from "productRouter.js";
+import productRouter from "./productRouter.js";
+import dotenv from "dotenv";
 import userRouter from "./userRouter.js";
-import orderRouter from "orderRouter.js";
-import uploadRouter from "uploadRouter.js";
+import orderRouter from "./orderRouter.js";
+import uploadRouter from "./uploadRouter.js";
 
 // ALLOWING process.env
 dotenv.config();
