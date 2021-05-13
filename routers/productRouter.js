@@ -94,7 +94,24 @@ productRouter.get(
   })
 );
 
-// GET PRODUCT BY ID
+productRouter.get(
+  "/productoffer",
+  expressAsyncHandler(async (req, res) => {
+    const pageSize = 5;
+    const productOffers = await Product.find({})
+      .sort({ sellQty: -1 })
+      .limit(pageSize);
+    if (productOffers) {
+      res.send(productOffers);
+      return;
+    }
+    res
+      .status(404)
+      .send({ message: "Nenhum produto mais vendidos encontrado" });
+  })
+);
+
+// GET PRODUCT BY ID - THIS ROUTE HAS TO STAY AT FINAL OF THE "get" BECAUSE OF THE PARAMETER "/:id" IF YOUR PATHS HAS ANOTHER PATH AFTER products/ IT WILL THINK IT IS THE PARAMETER "/:id"
 productRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
@@ -105,7 +122,7 @@ productRouter.get(
     if (product) {
       res.send(product);
     } else {
-      res.status(404).send({ messgae: "Dados do Produto não encontrado" });
+      res.status(404).send({ message: "Dados do Produto não encontrado" });
     }
   })
 );

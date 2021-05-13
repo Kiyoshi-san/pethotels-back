@@ -43,7 +43,6 @@ indexRouter.get("/*", (req, res) =>
 const __dirname = path.resolve();
 indexRouter.use("/api/uploads", uploadRouter);
 indexRouter.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-
 indexRouter.use("/api/users", userRouter);
 indexRouter.use("/api/products", productRouter);
 indexRouter.use("/api/orders", orderRouter);
