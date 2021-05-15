@@ -3,6 +3,7 @@ import path from "path";
 import productRouter from "./productRouter.js";
 import dotenv from "dotenv";
 import userRouter from "./userRouter.js";
+import categoryRouter from "./categoryRouter.js";
 import orderRouter from "./orderRouter.js";
 import uploadRouter from "./uploadRouter.js";
 
@@ -44,6 +45,7 @@ const __dirname = path.resolve();
 indexRouter.use("/api/uploads", uploadRouter);
 indexRouter.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 indexRouter.use("/api/users", userRouter);
+indexRouter.use("/api/categories", categoryRouter);
 indexRouter.use("/api/products", productRouter);
 indexRouter.use("/api/orders", orderRouter);
 
