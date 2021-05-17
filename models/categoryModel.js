@@ -8,6 +8,10 @@ const categorySchema = new mongoose.Schema(
     categoryId: { type: String, required: true },
     parentCategoryId: { type: String, required: true },
     online: { type: Boolean, required: true },
+    categoryData: {
+      name: String,
+      description: String,
+    },
   },
   {
     timestamp: true,

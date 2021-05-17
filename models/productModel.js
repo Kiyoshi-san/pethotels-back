@@ -16,12 +16,12 @@ const productSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
     },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    image: { type: String, required: true },
+    image: { type: Array, required: true },
     brand: { type: String, required: true },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+    categoryData: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+    categoryName: { type: String, required: true },
     description: { type: String, required: true },
     oldPrice: { type: Number, required: true },
     newPrice: { type: Number, required: true },
@@ -35,6 +35,8 @@ const productSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+productSchema.index({ name: 1, brand: 1, seller: 1 }, { unique: true });
 
 const Product = mongoose.model("Product", productSchema);
 export default Product;
